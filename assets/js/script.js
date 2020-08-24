@@ -80,16 +80,23 @@ $("#task-form-modal .btn-primary").click(function () {
   }
 });
 
-$(".list-group").on("click", "p", function() {
+// task text was clicked
+$(".list-group").on("click", "p", function () {
+  //get current text
   var text = $(this)
     .text()
     .trim();
 
-    var textInput = $("<textarea>")
+  // create new input element
+  var textInput = $("<textarea>")
     .addClass("form-control")
     .val(text);
-    $(this).replaceWith(textInput);
-    textInput.trigger("focus");
+
+  // swap out elements
+  $(this).replaceWith(textInput);
+
+  // automatically focus on new element
+  textInput.trigger("focus");
 });
 
 $(".list-group").on("blur", "textarea", function () {
@@ -109,6 +116,7 @@ $(".list-group").on("blur", "textarea", function () {
     .closest(".list-group-item")
     .index();
 
+  //update task in array and re-save to localstorage
   tasks[status][index].text = text;
   saveTasks();
 
